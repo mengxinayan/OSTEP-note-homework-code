@@ -6,11 +6,17 @@
 
 ### Intro
 
-[note](Intro/note.md)
+[Learning note](Intro/note.md)
 
 [Sample code](Intro/sample_code)
 
 ### Virtualization
+
+#### Part I. Virtualizing the CPU
+
+[Learning note](Virtualization/CPU/note.md)
+
+#### Part II. Virtualizing the memory
 
 ### Concurrency
 
