@@ -1,6 +1,12 @@
+# Virtualizing the CPU Homework Solution
+
+This solution document only contains my answer without questions and code running result. If you want to get a more detailed documents, please visit [here](./homework/README.md).
+
 ## ch4
 
-In this charter homework, we should run `process-run.py` simulator([here](./code/ch4/process-run.py)). Before run it, you should read its README([here](./code/ch4/README.md)).
+In this chapter homework, we should run `process-run.py` simulator([here](./code/ch4/process-run.py)). Before run it, you should read its README([here](./code/ch4/README.md)). 
+
+[Chapter 4 detailed solution document](./homework/ch4.md)
 
 ### 4.1
 
