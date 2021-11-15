@@ -16,6 +16,10 @@
 
 [Learning note](Virtualization/CPU/note.md)
 
+[Solution (only answers)](Virtualization/CPU/solution.md)
+
+[More detailed solution(including questions, answers, code and its result)](Virtualization/CPU/homework/README.md)
+
 #### Part II. Virtualizing the memory
 
 ### Concurrency
