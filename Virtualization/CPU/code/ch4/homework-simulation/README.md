@@ -1,7 +1,7 @@
 
 # Overview
 
-This program, called process-run.py, allows you to see how the state of a
+This program, called `process-run.py`, allows you to see how the state of a
 process state changes as it runs on a CPU. As described in the chapter, 
 processes can be in a few different states:
 
@@ -246,7 +246,3 @@ There are a few other important flags:
 ```
 
 Now go answer the questions at the back of the chapter to learn more, please.
-
-
-
-

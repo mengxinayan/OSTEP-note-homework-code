@@ -1,4 +1,4 @@
-## ch4. Processes
+## Chapter 4. Processes
 
 The definition of a process, informally, is quite simple: it is a running program.
 
@@ -50,3 +50,27 @@ This final state can be useful as it allows other processes (usually the parent 
 - The **process API** consists of calls programs can make related to processes. Typically, this includes creation, destruction, and other useful calls.
 - Processes exist in one of many different **process states**, including running, ready to run, and blocked. Different events (e.g., getting scheduled or descheduled, or waiting for an I/O to complete) transition a process from one of these states to the other.
 - A **process list** contains information about all processes in the system. Each entry is found in what is sometimes called a **process control block (PCB)**, which is really just a structure that contains information about a specific process.
+
+## Chapter 5. Process API
+
+UNIX presents one of the most intriguing ways to create a new process with a pair of system calls: `fork()` and `exec()`. A third routine, `wait()`, can be used by a process wishing to wait for a process it has created to complete.
+
+### 5.1 The `fork()` System Call
+
+Each process has its **process identifier**, also known as a **PID**. The child process has its own copy of the address space, registers, PC, and so forth. 
+
+The `fork()` system call is used to create a new process. The value it returns to the caller of `fork()` is different. Specifically, while the parent receives the PID of the newly-created child, the child receives a return code of zero.
+
+Assuming run [Example p1](./code/ch5/sample/p1.c) on a system with a single CPU, the order of message printed by parent and child process cannot be determined. Because the **CPU scheduler**, it will leads to some interesting problems, particularly in **multi-threaded programs**.
+
+### 5.2 The `wait()` System Call
+
+### 5.3 Finally, The `exec()` System Call
+
+### 5.4 Why? Motivating the API
+
+### 5.5 Process Control And Users
+
+### 5.6 Useful Tools
+
+### 5.7 Summary

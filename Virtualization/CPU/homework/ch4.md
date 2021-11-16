@@ -4,7 +4,7 @@ If you just want to read the answers, please visit [here](../solution.md).
 
 ## Homework (Simulation)
 
-This program, [process-run.py](../code/ch4/process-run.py), allows you to see how process states change as programs run and either use the CPU (e.g., perform an add instruction) or do I/O (e.g., send a request to a disk and wait for it to complete). See the [README](../code/ch4/README.md) for details
+This program, [process-run.py](../code/ch4/homework-simulation/process-run.py), allows you to see how process states change as programs run and either use the CPU (e.g., perform an add instruction) or do I/O (e.g., send a request to a disk and wait for it to complete). See the [README](../code/ch4/homework-simulation/README.md) for details
 
 ## Questions and Solutions
 
