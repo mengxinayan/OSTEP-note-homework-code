@@ -60,4 +60,133 @@ This will improve time utilization. Because one process can start I/O immediatel
 
 ## Chapter 5 (Simulation)
 
+In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
+
+[Chapter 5 detailed solution document](./homework/ch5.md)
+
+### 5.1
+
+```
+                           Process Tree:
+                               a
+
+Action: a forks b
+Process Tree?                   a
+                                |──b
+
+Action: a forks c
+Process Tree?                   a
+                                |──b
+                                |──c
+
+Action: c EXITS
+Process Tree?
+                                a
+                                |──b
+
+Action: a forks d
+Process Tree?
+                                a
+                                |──b
+                                |──d
+
+Action: a forks e
+Process Tree?
+                                a
+                                |──b
+                                |──d
+                                |──e
+```
+
+### 5.2
+
+The `fork_percentage` is more larger, there will more processes, the process tree will be more complex.
+
+### 5.3
+
+```
+                           Process Tree:
+                               a
+
+Action: a forks b
+                               a
+                               └── b
+Action: b EXITS
+                               a
+Action: a forks c
+                               a
+                               └── c
+Action: a forks d
+                               a
+                               ├── c
+                               └── d
+Action: a forks e
+                               a
+                               ├── c
+                               ├── d
+                               └── e
+
+```
+
+### 5.4
+
+Without `-R` flag, when a process's parent exits, its parent will change to initial process.
+
+```
+a
+|──b
+|──d
+|──e
+```
+
+With `-R` flag, when a process's parent exits, its parent will change to its grandfather process.
+
+```
+a
+|──b
+   |──d
+   |──e
+```
+
+### 5.5
+
+```
+                           Process Tree:
+                               a
+
+Action: a forks b
+Action: b forks c
+Action: b forks d
+Action: c forks e
+Action: b forks f
+
+                        Final Process Tree:
+                                a
+                                |──b
+                                   |──c
+                                      |──e
+                                   |──d
+                                   |──f
+```
+
+### 5.6
+
+```
+                           Process Tree:
+                               a
+
+Action: a forks b
+Action: ? forks c (Can't determine who forks c)
+Action: a forks d
+Action: b forks e
+Action: C EXITS ?(Can't determine when C exit)
+
+                        Final Process Tree:
+                               a
+                               ├── b
+                               │   └── e
+                               └── d
+
+```
+
 ## Chapter 5 (Code)

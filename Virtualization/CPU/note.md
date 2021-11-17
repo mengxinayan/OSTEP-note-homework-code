@@ -65,7 +65,7 @@ Assuming run [Example p1](./code/ch5/sample/p1.c) on a system with a single CPU,
 
 ### 5.2 The `wait()` System Call
 
-Sometimes, it is useful for a parent to wait for a child process process to finish what it has been doing. This task is accomplished with the `wait()` system call (or its more complete sibing `waitpid()`);
+Sometimes, it is useful for a parent to wait for a child process process to finish what it has been doing. This task is accomplished with the `wait()` system call (or its more complete sibling `waitpid()`);
 
 In [Example p2](./code/ch5/sample/p2.c), the parent process calls `wait()` to delay its execution until the child finishes executing. So child will print message first, then parent print its message.
 
