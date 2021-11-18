@@ -62,7 +62,7 @@ This will improve time utilization. Because one process can start I/O immediatel
 
 In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
 
-[Chapter 5 detailed solution document](./homework/ch5.md)
+[Chapter 5 (simulation) detailed solution document](./homework/ch5-simulation.md)
 
 ### 5.1
 
@@ -190,3 +190,41 @@ Action: C EXITS ?(Can't determine when C exit)
 ```
 
 ## Chapter 5 (Code)
+
+[Chapter 5 (code) detailed solution document](./homework/ch5-code.md)
+
+### 5.1 
+
+`x = 100` in child process. Because child and parent process have their own `x` variable, child process changes to `x` value **do not** affect the value of `x` in the parent process. 
+
+[code](./code/ch5/homework-code/hw1.c)
+
+### 5.2
+
+Yes, both parent and child process can use this file descriptor. All messages will be written in the file, but the sequence of them are not sure. 
+
+[code](./code/ch5/homework-code/hw2.c)
+
+### 5.3
+
+Use `sleep()` before print 'goodbye' in parent process. \
+
+[code](./code/ch5/homework-code/hw3.c)
+
+### 5.4
+
+To fit various demand. The differences between `exec()` family system call are as follow.
+
+`execl*()` V.S. `execv*()`: `execl*()` requires a list of arguments while `execv*()` requires a vector of arguments. Specifically, `execl*()` needs `char *arg1, char *arg2, ..., char *argX`, `execv*()` needs `char *argv[]`. Note that for `execv*()`, the array  of  pointers  **must**  be  terminated  by  a  null pointer.
+
+For suffix `p`, such as `execvp()`, `execlp()`. `p` means it will the `PATH` environment variable to find the program. For example, if you want to use `ls` command, with suffix `p`, use `ls` directly can work well, however, you should use `/bin/ls` rather than `ls` without the suffix `p`.
+
+For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the environment for the process.
+
+[code](./code/ch5/homework-code/hw4.c)
+
+### 5.5
+
+`wait()` returns child process identifier(PID). If child process call `wait()`, it will return `-1`. 
+
+[code](./code/ch5/homework-code/hw5.c)
