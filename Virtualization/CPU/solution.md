@@ -244,3 +244,43 @@ After closing stdout file descriptor, it can't print any message by calling `pri
 ### 5.8
 
 [code](./code/ch5/homework-code/hw8.c)
+
+## Chapter 6 (measurement)
+
+[Chapter 6 (measurement) detailed solution document](./homework/ch5-code.md)
+
+We can use `gettimeofday()` to measure time. By calculating the difference as the elapsed time. 
+
+```c
+struct timeval start_timeval;
+struct timeval end_timeval;
+
+gettimeofday(&start_timeval, NULL);
+// execution code.
+gettimeofday(&end_timeval, NULL);
+
+float elapsed = (end_timeval.tv_sec - start_timeval.tv_sec) * 1000000.0
+                  + end_timeval.tv_usec - start_timeval.tv_usec
+```
+
+### Measure the costs of a system call
+
+We can repeatedly call a simple system call (e.g. performing a 0-byte read()), and time how long it takes; dividing the time by the number of iterations gives you an estimate of the cost of a system call.
+
+Here is [code](,/code/ch6/homework-measurement/measure-system-call.c). The following is my execution result.
+
+```console
+$ ./measure-system-call
+One read() system call takes 2.179000 ms.
+```
+
+### Measure the  of context switch
+
+First, we should use `sched_setaffinity()` call to bind a process to a particular processor. Then running two processes on the same CPU, The first process then issues a write to the first pipe, and waits for a read on the second; upon seeing the first process waiting for something to read from the second pipe, the OS puts the first process in the blocked state, and switches to the other process, which reads from the first pipe and then writes to the second. When the second process tries to read from the first pipe again, it blocks, and thus the back-and-forth cycle of communication continues. By measuring the cost of communicating like this repeatedly.
+
+Here is [code](,/code/ch6/homework-measurement/measure-context-switch.c). The following is my execution result.
+
+```console
+$ ./measure-context-switch 
+One context switch system call takes 6.921300 ms
+```
