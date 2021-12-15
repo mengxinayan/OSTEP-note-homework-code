@@ -228,3 +228,19 @@ For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the e
 `wait()` returns child process identifier(PID). If child process call `wait()`, it will return `-1`. 
 
 [code](./code/ch5/homework-code/hw5.c)
+
+### 5.6
+
+The `wait()` system call suspends execution of the calling thread until one of its children terminates. The call `wait(&wstatus)` is equivalent to: `waitpid(-1, &wstatus, 0)`. The `waitpid()` system call suspends execution of the calling thread until a child specified by  pid  argument  has  changed state.  By default, `waitpid()` waits only for terminated children, but this behavior is modifiable via the options argument, as described below.
+
+[code](./code/ch5/homework-code/hw6.c)
+
+### 5.7
+
+After closing stdout file descriptor, it can't print any message by calling `printf()`.
+
+[code](./code/ch5/homework-code/hw7.c)
+
+### 5.8
+
+[code](./code/ch5/homework-code/hw8.c)
