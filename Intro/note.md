@@ -27,7 +27,7 @@ Each process accesses its own private **virtual address space**(sometimes just c
 #### 2.3 Concurrency
 
 ```
-➜  code git:(master) ✗ ./threads 9000000
+$ ./threads 9000000
 Initial value: 0
 Final value: 15347306
 ```
