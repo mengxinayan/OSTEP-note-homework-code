@@ -247,7 +247,7 @@ After closing stdout file descriptor, it can't print any message by calling `pri
 
 ## Chapter 6 (measurement)
 
-[Chapter 6 (measurement) detailed solution document](./homework/ch5-code.md)
+[Chapter 6 (measurement) detailed solution](./homework/ch5-code.md)
 
 We can use `gettimeofday()` to measure time. By calculating the difference as the elapsed time. 
 
