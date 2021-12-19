@@ -62,7 +62,7 @@ This will improve time utilization. Because one process can start I/O immediatel
 
 In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
 
-[Chapter 5 (simulation) detailed solution document](./homework/ch5-simulation.md)
+[Chapter 5 (simulation) detailed solution](./homework/ch5-simulation.md)
 
 ### 5.1
 
@@ -191,7 +191,7 @@ Action: C EXITS ?(Can't determine when C exit)
 
 ## Chapter 5 (Code)
 
-[Chapter 5 (code) detailed solution document](./homework/ch5-code.md)
+[Chapter 5 (code) detailed solution](./homework/ch5-code.md)
 
 ### 5.1 
 

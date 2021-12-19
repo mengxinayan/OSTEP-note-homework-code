@@ -1,6 +1,6 @@
 # ch5 Process API Homework and Solution
 
-If you just want to read the answers, please visit [here](../solution.md).
+If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
 
 ## Homework (Simulation)
 
