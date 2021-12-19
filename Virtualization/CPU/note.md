@@ -183,3 +183,70 @@ Operating systems also have developed a number of sophisticated **locking** sche
 - The trap tables must be set up by the OS at boot time, and make sure that they cannot be readily modified by user programs. All of this is part of the **limited direct execution** protocol which runs programs efficiently but without loss of OS control.
 - Once a program is running, the OS must use hardware mechanisms to ensure the user program does not run forever, namely the **timer interrupt**. This approach is a **non-cooperative** approach to CPU scheduling.
 - Sometimes the OS, during a timer interrupt or system call, might wish to switch from running the current process to a different one, a low-level technique known as a **context switch**.
+
+## Chapter 7. Scheduling: Introduction
+
+This chapter describes a series of **scheduling policies** (sometimes called **disciplines**).
+
+### 7.1 Workload Assumption
+
+**workload**: the collectively processes running in the system.
+
+In this book, author make the following assumptions about the processes, sometimes called **jobs**, that are running in the system:
+
+1. Each job runs for the same amount of time.
+2. All jobs arrive at the same time.
+3. Once started, each job runs to completion.
+4. All jobs only use the CPU (i.e., they perform no I/O)
+5. The run-time of each job is known.
+
+### 7.2 Scheduling Metrics
+
+A **scheduling metric** is just something that we use to *measure* something, and there are a number of different metrics that make sense in scheduling.
+
+For now, let us takes a single metric: **turnaround time**. The turnaround time of a job is defined as the time at which the job completes minus the time at which the job arrived in the system. More formally, the turnaround time T<sub>turnaround</sub> is:
+
+T<sub>turnaround</sub> = T<sub>completion</sub> - T<sub>arrival</sub>
+
+Because we have assumed that all jobs arrive at the same time, for now
+T<sub>arrival</sub> = 0 and hence T<sub>turnaround</sub> = T<sub>completion</sub>.
+
+You should note that turnaround time is a **performance** metric. Another metric of interest is **fairness**. Performance and fairness are often at odds in scheduling.
+
+### 7.3 First In, First Out (FIFO)
+
+The most basic algorithm we can implement is known as **First In, First Out (FIFO)** scheduling or sometimes **First Come, First Served (FCFS)**. FIFO has a number of positive properties: it is clearly simple and thus easy to implement. 
+
+![FIFO Simple Example](./fig/ch7/7-1.png)
+
+From Fig 7.1, A,B,C each job runs for 10 seconds. the **average turnaround time** for three jobs is (10+20+30)/3 = 20.
+
+![Why FIFO Is Not That Great](./fig/ch7/7-2.png)
+
+From Fig 7.2, this time A runs for 100 seconds while B and C run for 10 second each. The **average turnaround time** is a painful 110 seconds ((100+110+120)/3=110)
+
+This problem is generally referred to as the **convoy effect**.
+
+### 7.4 Shortest Job First (SJF)
+
+This new scheduling discipline is known as **Shortest Job First (SJF)**, and the name should be easy to remember because it describes the policy quite completely: it runs the shortest job first, then the next shortest, and so on.
+
+![SJF Simple Example](./fig/ch7/7-3.png)
+
+From Fig 7.3, A runs for 100 seconds while B and C run for 10 second each. The **average turnaround time** from 110 second to 50 ((10+20+120)/3=50)
+
+If all jobs arrive at the same time, SJF is indeed an **optimal** scheduling algorithm.
+
+![SJF With Late Arrivals From B and C](./fig/ch7/7-4.png)
+
+However, if jobs does not arrive at the same time, SJF will lead to a problem. From Fig 7.4, A arrives at t = 0 and needs to run for 100 seconds, whereas B and C arrive at t = 10 and each need to run for 10 seconds. The **average turnaround time** for three jobs is 103.33 second ((100+(110-10)+(120-10))/3=103.33)
+
+### 7.5 Shortest Time-to-Completion First (STCF)
+
+Now, let us relax assumption 3 (that jobs must run to completion). In **non-preemptive** schedulers, system would run each job to completion before considering whether to run a new job. While all modern schedulers are **preemptive**, and quite willing to stop one process from running in order to run another. In particular, the scheduler can perform a context switch, stopping one running process temporarily and resuming (or starting) another.
+
+**Shortest Time-to-Completion First (STCF)** or **Preemptive Shortest Job First (PSJF)**: Any time a new job enters the system, the STCF scheduler determines which of the remaining jobs (including the new job) has the least time left, and schedules that one. 
+
+![STCF Simple Example](./fig/ch7/7-5.png)
+
+From Fig 7.5. using above example. The scheduler can certainly do something else when B and C arrive: it can preempt job A and decide to run another job, perhaps continuing A later. . The result is a much-improved **average turnaround time**: 50 seconds (((120-0)+(20-10)+(30-10))/3)
