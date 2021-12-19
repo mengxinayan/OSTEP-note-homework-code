@@ -6,7 +6,7 @@ This solution document only contains my answer without questions and code runnin
 
 In this chapter homework, we should run `process-run.py` simulator([here](./code/ch4/homework-simulation/process-run.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)).
 
-[Chapter 4 detailed solution document](./homework/ch4.md)
+[Chapter 4 detailed solution](./homework/ch4-simulation.md)
 
 ### 4.1
 
