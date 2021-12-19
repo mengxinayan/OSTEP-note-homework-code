@@ -32,7 +32,7 @@ lated to input/output (I/O). For example, in UNIX system, each process by defaul
 - **Ready**: In the ready state, a process is ready to run but for some reason the OS has chosen not to run it at this given moment
 - **Blocked**: In the blocked state, a process has performed some kind of operation that makes it not ready to run until some other event takes place. A common example: when a process initiates an I/O request to a disk, it becomes blocked and thus some other process can use the processor.
 
-![Process: State transitions](./fig/4-2.png)
+![Process: State transitions](./fig/ch4/4-2.png)
 
 Sometimes a system will have an **initial state** that the process is in when it is being created. Also, a process could be placed in a **final state** where it has exited but has not yet been cleaned up (in UNIX-based systems, this is called the
 zombie state1).
@@ -183,4 +183,3 @@ Operating systems also have developed a number of sophisticated **locking** sche
 - The trap tables must be set up by the OS at boot time, and make sure that they cannot be readily modified by user programs. All of this is part of the **limited direct execution** protocol which runs programs efficiently but without loss of OS control.
 - Once a program is running, the OS must use hardware mechanisms to ensure the user program does not run forever, namely the **timer interrupt**. This approach is a **non-cooperative** approach to CPU scheduling.
 - Sometimes the OS, during a timer interrupt or system call, might wish to switch from running the current process to a different one, a low-level technique known as a **context switch**.
-
