@@ -60,7 +60,7 @@ This will improve time utilization. Because one process can start I/O immediatel
 
 ## Chapter 5 (Simulation)
 
-In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
+In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch5/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
 
 [Chapter 5 (simulation) detailed solution](./homework/ch5-simulation.md)
 
@@ -245,9 +245,9 @@ After closing stdout file descriptor, it can't print any message by calling `pri
 
 [code](./code/ch5/homework-code/hw8.c)
 
-## Chapter 6 (measurement)
+## Chapter 6 (Measurement)
 
-[Chapter 6 (measurement) detailed solution](./homework/ch5-code.md)
+[Chapter 6 (measurement) detailed solution](./homework/ch6-measurement.md)
 
 We can use `gettimeofday()` to measure time. By calculating the difference as the elapsed time. 
 
@@ -284,3 +284,69 @@ Here is [code](,/code/ch6/homework-measurement/measure-context-switch.c). The fo
 $ ./measure-context-switch 
 One context switch system call takes 6.921300 ms
 ```
+
+## Chapter 7 (Simulator)
+
+In this chapter simulation homework, we should run `scheduler.py` simulator([here](./code/ch7/homework-simulation/scheduler.py)). Before run it, you should read its README([here](./code/ch7/homework-simulation/README.md)).
+
+[Chapter 7 (simulation) detailed solution](./homework/ch7-simulation.md)
+
+### 7.1
+
+For FIFO:
+
+Turnaround time: 200, 400, 600. Average turnaround time is 400.
+
+Response time: 0, 200, 400. Average turn around time is 200.
+
+For SJF:
+
+Turnaround time: 200, 400, 600. Average turnaround time is 400.
+
+Response time: 0, 200, 400. Average turn around time is 200.
+
+### 7.2
+
+For FIFO:
+
+Turnaround time: 100, 300, 600. Average turnaround time is 333.33.
+
+Response time: 0, 100, 300. Average turn around time is 133.33.
+
+For SJF:
+
+Turnaround time: 100, 300, 600. Average turnaround time is 333.33.
+
+Response time: 0, 100, 300. Average turn around time is 133.33.
+
+### 7.3
+
+For RR with time-slice of 1:
+
+Turnaround time: 298, 499, 600. Average turnaround time is 465.67.
+
+Response time: 0, 1, 2. Average turn around time is 1.
+
+### 7.4
+
+The length of arrival jobs is from short to long.
+
+### 7.5
+
+Each job of length is same and quantum length is equals to this length.
+
+### 7.6
+
+Response time will increase too.
+
+```console
+$ python3 scheduler.py -p SJF -l 100,100,100 -c
+$ python3 scheduler.py -p SJF -l 200,200,200 -c
+$ python3 scheduler.py -p SJF -l 300,300,300 -c
+```
+
+### 7.7
+
+Response time will increase too.
+
+Assume quantum length is `t`, so the Nth job response time is `(N-1)*t`, the average response time is `(N-1)*t/2`.
