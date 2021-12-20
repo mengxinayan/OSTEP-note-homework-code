@@ -4,7 +4,7 @@ This solution document only contains my answer without questions and code runnin
 
 ## Chapter 4 (Simulation)
 
-In this chapter homework, we should run `process-run.py` simulator([here](./code/ch4/homework-simulation/process-run.py)). Before run it, you should read its README([here](./code/ch4/homework-simulation/README.md)).
+In this chapter homework, we should run [`process-run.py`](./code/ch4/homework-simulation/process-run.py) simulator. Before run it, you should read its [README](./code/ch4/homework-simulation/README.md).
 
 [Chapter 4 detailed solution](./homework/ch4-simulation.md)
 
@@ -60,7 +60,7 @@ This will improve time utilization. Because one process can start I/O immediatel
 
 ## Chapter 5 (Simulation)
 
-In this chapter simulation homework, we should run `fork.py` simulator([here](./code/ch5/homework-simulation/fork.py)). Before run it, you should read its README([here](./code/ch5/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
+In this chapter simulation homework, we should run [`fork.py`](./code/ch5/homework-simulation/fork.py) simulator. Before run it, you should read its [README](./code/ch5/homework-simulation/README.md)). Note that this simulator will generate randomly, so its answer is **not unique**.
 
 [Chapter 5 (simulation) detailed solution](./homework/ch5-simulation.md)
 
@@ -287,7 +287,7 @@ One context switch system call takes 6.921300 ms
 
 ## Chapter 7 (Simulator)
 
-In this chapter simulation homework, we should run `scheduler.py` simulator([here](./code/ch7/homework-simulation/scheduler.py)). Before run it, you should read its README([here](./code/ch7/homework-simulation/README.md)).
+In this chapter simulation homework, we should run [`scheduler.py`](./code/ch7/homework-simulation/scheduler.py) simulator. Before run it, you should read its [README](./code/ch7/homework-simulation/README.md).
 
 [Chapter 7 (simulation) detailed solution](./homework/ch7-simulation.md)
 

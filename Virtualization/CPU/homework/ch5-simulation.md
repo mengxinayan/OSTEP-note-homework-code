@@ -4,7 +4,7 @@ If you just want to read the answers, that is a simple version for solutions, pl
 
 ## Homework (Simulation)
 
-This simulation homework focuses on [fork.py](../code/ch5/homework-simulation/fork.py), a simple process creation simulator that shows how processes are related in a single “familial” tree. Read the relevant [README](../code/ch5/homework-simulation/README.md) for details about how to run the simulator.
+This simulation homework focuses on [`fork.py`](../code/ch5/homework-simulation/fork.py), a simple process creation simulator that shows how processes are related in a single “familial” tree. Read the relevant [README](../code/ch5/homework-simulation/README.md) for details about how to run the simulator.
 
 ## Questions and Solutions
 
