@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     struct timeval start_timeval;
     struct timeval end_timeval;
-sched setaffinity()
+    
     gettimeofday(&start_timeval, NULL);
     for (int i = 0; i < loops; i++) {
         read(fd, NULL, 0);
