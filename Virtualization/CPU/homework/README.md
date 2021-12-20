@@ -11,3 +11,5 @@ If you just want to read the answer, that is a simple version for solutions, ple
 [Chapter 5. Process API (Code)](./ch5-code.md)
 
 [Chapter 6. Direct Execution (Measurement)](./ch6-measurement.md)
+
+[Chapter 7. CPU Scheduling (Simulation)](./ch7-simulation.md)
