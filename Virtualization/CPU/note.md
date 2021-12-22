@@ -217,11 +217,11 @@ You should note that turnaround time is a **performance** metric. Another metric
 
 The most basic algorithm we can implement is known as **First In, First Out (FIFO)** scheduling or sometimes **First Come, First Served (FCFS)**. FIFO has a number of positive properties: it is clearly simple and thus easy to implement. 
 
-![FIFO Simple Example](./fig/ch7/7-1.png)
+![Figure 7.1: FIFO Simple Example](./fig/ch7/7-1.png)
 
 From Fig 7.1, A,B,C each job runs for 10 seconds. the average turnaround time for three jobs is (10+20+30)/3 = 20.
 
-![Why FIFO Is Not That Great](./fig/ch7/7-2.png)
+![Figure 7.2: Why FIFO Is Not That Great](./fig/ch7/7-2.png)
 
 From Fig 7.2, this time A runs for 100 seconds while B and C run for 10 second each. The average turnaround time is a painful 110 seconds ((100+110+120)/3=110)
 
@@ -231,13 +231,13 @@ This problem is generally referred to as the **convoy effect**.
 
 This new scheduling discipline is known as **Shortest Job First (SJF)**, and the name should be easy to remember because it describes the policy quite completely: it runs the shortest job first, then the next shortest, and so on.
 
-![SJF Simple Example](./fig/ch7/7-3.png)
+![Figure 7.3: SJF Simple Example](./fig/ch7/7-3.png)
 
 From Fig 7.3, A runs for 100 seconds while B and C run for 10 second each. The average turnaround time from 110 second to 50 ((10+20+120)/3=50)
 
 If all jobs arrive at the same time, SJF is indeed an **optimal** scheduling algorithm.
 
-![SJF With Late Arrivals From B and C](./fig/ch7/7-4.png)
+![Figure 7.4: SJF With Late Arrivals From B and C](./fig/ch7/7-4.png)
 
 However, if jobs does not arrive at the same time, SJF will lead to a problem. From Fig 7.4, A arrives at t = 0 and needs to run for 100 seconds, whereas B and C arrive at t = 10 and each need to run for 10 seconds. The average turnaround time for three jobs is 103.33 second ((100+(110-10)+(120-10))/3=103.33)
 
@@ -247,7 +247,7 @@ Now, let us relax assumption 3 (that jobs must run to completion). In **non-pree
 
 **Shortest Time-to-Completion First (STCF)** or **Preemptive Shortest Job First (PSJF)**: Any time a new job enters the system, the STCF scheduler determines which of the remaining jobs (including the new job) has the least time left, and schedules that one. 
 
-![STCF Simple Example](./fig/ch7/7-5.png)
+![Figure 7.5: STCF Simple Example](./fig/ch7/7-5.png)
 
 From Fig 7.5. using above example. The scheduler can certainly do something else when B and C arrive: it can preempt job A and decide to run another job, perhaps continuing A later. . The result is a much-improved average turnaround time: 50 seconds (((120-0)+(20-10)+(30-10))/3)
 
@@ -257,7 +257,7 @@ From Fig 7.5. using above example. The scheduler can certainly do something else
 
 T<sub>response</sub> = T<sub>firstrun</sub> − T<sub>arrival</sub> 
 
-![SJF Again(Bad for Response Time)](./fig/ch7/7-6.png)
+![Figure 7.6: SJF Again(Bad for Response Time)](./fig/ch7/7-6.png)
 
 For example, Fig 7.6 (with A arriving at time 0, B, C at time 10), the response time of each job is as follows: 0 for job A, 0 for job B, and 10 for job C, the average response time is 3.33.
 
@@ -265,7 +265,7 @@ For example, Fig 7.6 (with A arriving at time 0, B, C at time 10), the response 
 
 **Round-Robin(RR)**: its basic idea is simple, instead of running jobs to completion, RR runs a job for a **time slice**(sometimes called **scheduling quantum**) and then switches to the next job in the run queue. It repeatedly does so until the jobs are finished. For this reason, RR is sometimes called **time-slicing**.
 
-![Round Robin (Good for Response Time)](./fig/ch7/7-7.png)
+![Figure 7.7: Round Robin (Good for Response Time)](./fig/ch7/7-7.png)
 
 For example, Fig 7.7(A, B, C arriving at time 0, and each wish to run 5 seconds), RR with a time-slice of 1 second. The average response time of RR is (0+1+2)/3 = 1; for SJF, average response time: (0+5+10)/3 = 5.
 
@@ -281,7 +281,7 @@ The first type (SJF, STCF) optimizes turnaround time, but is bad for response ti
 
 Now we relax assumption 4 — of course all programs perform I/O. A scheduler clearly has a decision to make when a job initiates an I/O request, because jobs don't use CPU during the I/O, it is blocked waiting for I/O completion. The scheduler also has to make a decision when the I/O completes.
 
-![Poor Use V.S. Overlap](./fig/ch7/7-8.png)
+![Figure 7.8: Poor Use V.S. Overlap](./fig/ch7/7-8.png)
 
 Here is an example to show the difference between poor use and overlap, Doing so allows for **overlap**, with the CPU being used by one process while waiting for the I/O of another process to complete; the system is thus better utilized.
 
@@ -292,3 +292,115 @@ With a basic approach to I/O in place, we come to our final assumption: that the
 ### Summary
 
 There are two families of approaches, the first runs the shortest job remaining and thus optimizes turnaround time; the second alternates between all jobs and thus optimizes response time. Both are bad where the other is good, alas, an inherent trade-off common in systems.
+
+## Chapter 8. Scheduling: The Multi-Level Feedback Queue
+
+The **Multi-Level Feedback Queue(MLFQ)** was first described by Corbato(Turing Award 1990) et al. in 1962.
+
+The fundamental problem MLFQ tries to address is two-fold. Without a *priori*
+knowledge of job length , First, it would like to optimize *turnaround time*. Second, MLFQ would like to make a system fell responsive to interactive users and thus minimize *response time*. 
+
+The multi-level feedback queue is an excellent example of a system that
+learns from the past to predict the future. 
+
+### 8.1 MLFQ: Basic Rules
+
+The MLFQ has a number of distinct **queues**, each assigned a different **priority level**. MLFQ uses priorities to decide which job should run at a given time: a job with higher priority (i.e., a job on a higher queue) is chosen to run. Of course, more than one job may be on a given queue, and thus have the same priority. In this case, we will just use round-robin scheduling among those jobs.
+
+The first two basic rules for MLFQ:
+- **Rule 1**: If Priority(A) > Priority(B), A runs (B doesn't)
+- **Rule 2**: If Priority(A) = Priority(B), A & B run in RR.
+
+Rather than giving a fixed priority to each job, MLFQ *varies* the priority of a job based on its *observed behavior*. If, for example, a job repeatedly relinquishes the CPU while waiting for input from the keyboard, MLFQ will keep its priority high, as this is how an interactive process might behave. If, instead, a job uses the CPU intensively for long periods of time, MLFQ will reduce its priority. In this way, MLFQ will try to *learn* about processes as they run, and thus use the *history* of the job to predict its *future* behavior.
+
+### 8.2 Attempt #1: How To Change Priority
+
+We must keep in mind our workload: a mix of interactive jobs that are short-running (and may frequently relinquish the CPU), and some longer-running “CPU-bound” jobs that need a lot of CPU time but where response time isn’t important. Here is our first attempt at a priority-adjustment algorithm:
+
+- **Rule 3**: When a job enters the system, it is placed at the highest priority(the topmost queue)
+- **Rule 4a**: If a jobs uses up an entire time slice while running, its priority is *reduced* (i.e, it moves down one queue)
+- **Rule 4b**: If a job gives up the CPU before the time slice is up, it stays at the *same* priority level.
+
+#### Example 1: A Single Long-Running Job
+
+![Figure 8.2: Long-running Job Over Time](./fig/ch8/8-2.png)
+
+Figure 8.2 shows a single long-running job in MLFQ. the job enters at the highest priority (Q2). After a single time-slice of 10 ms, the scheduler reduces the job’s priority by one, and thus the job is on Q1. After running at Q1 for a time slice, the job is finally lowered to the lowest priority in the system (Q0), where it remains.
+
+#### Example 2: Along Came A Short Job
+
+In this example, there are two jobs: A, which is a long-running CPU-intensive job, and B, which is a short-running interactive job. 
+
+![Figure 8.3: Along Came An Interactive Job](./fig/ch8/8-3.png)
+
+Figure 8.3 plots the results of this scenario. A (shown in black) is running along in the lowest-priority queue (as would any long-running CPU-intensive jobs); B (shown in gray) arrives at time T = 100, and thus is inserted into the highest queue; as its run-time is short (only 20 ms), B completes before reaching the bottom queue, in two time slices; then A resumes running (at low priority).
+
+The major goals of the algorithm: because it doesn’t know whether a job will be a short job or a long-running job, it first assumes it might be a short job, thus giving the job high priority. If it actually is a short job, it will run quickly and complete; if it is not a short job, it will slowly move down the queues, and thus soon prove itself to be a long-running more batch-like process. In this manner, MLFQ approximates SJF.
+
+#### Example 3: What About I/O?
+
+As Rule 4b states above,  if an interactive job, for example, is doing a lot of I/O (say by waiting for user input from the keyboard or mouse), it will relinquish the CPU before its time slice is complete.
+
+![Figure 8.4: A Mixed I/O-intensive and CPU-intensive Workload](./fig/ch8/8-4.png)
+
+Figure 8.4 shows an example of how this works, with an interactive job B (shown in gray) that needs the CPU only for 1 ms before performing an I/O competing for the CPU with a long-running batch job A (shown in black). The MLFQ approach keeps B at the highest priority because B keeps releasing the CPU; if B is an interactive job, MLFQ further achieves its goal of running interactive jobs quickly.
+
+#### Problems with Our Current MLFQ
+
+First, there is the problem of **starvation**: if there are “too many” interactive jobs in the system, they will combine to consume all CPU time, and thus long-running jobs will never receive any CPU time (they starve).
+
+Second, a smart user could rewrite their program to **game the scheduler**. The algorithm we have described is susceptible to the following attack: before the time slice is over, issue an I/O operation (to some file you don’t care about) and thus relinquish the CPU; doing so allows you to remain in the same queue, and thus gain a higher percentage of CPU time. When done right (e.g., by running for 99% of a time slice before relinquishing the CPU), a job could nearly monopolize the CPU.
+
+Finally, a program may *change its behavior* over time;
+
+### 8.3 Attempt #2: The Priority Boost
+
+The simple idea here is to periodically **boost** the priority of all the jobs in system. There are many ways to achieve this, but let’s just do something simple: throw them all in the topmost queue; hence, a new rule:
+
+- **Rule 5**: After some time period S, move all the jobs in the system to topmost queue.
+
+Such new rule solves two problems mentioned above at once. First, processes are guaranteed not to starve: by sitting in the top queue, a job will share the CPU with other high-priority jobs in a round-robin fashion, and thus eventually receive service. Second, if a CPU-bound job has become interactive, the scheduler treats it properly once it has received the priority boost.
+
+![Figure 8.5: Without(Left) and With(Right) Priority Boost](./fig/ch8/8-5.png)
+
+Figure 8.5 shows an example. On the left, there is no priority boost, and thus the long-running job gets starved once the two short jobs arrive; on the right, there is a priority boost every 50 ms and thus we at least guarantee that the long-running job will make some progress, getting boosted to the highest priority every 50 ms and thus getting to run periodically.
+
+There is an obvious question: what should S be set to?  John Ousterhout used to call such values in systems voo-doo constants, because they seemed to require some form of black magic to set them correctly. Unfortunately, S has that flavor. If it is set too high, long-running jobs could starve; too low, and interactive jobs may not get a proper share of the CPU. TIP: Avoid voo-doo constants is a good idea whenever possible(**Ousterhout’s Law**) **(TODO Why?)**
+
+### 8.4 Attempt #3: Better Accounting
+
+How to prevent gaming of our scheduler? The solution here is to perform better accounting of CPU time at each level of the MLFQ. Instead of forgetting how much of a time slice a process used at a given level, the scheduler should keep track; once a process has used its allotment, it is demoted to the next priority queue. Whether it uses the time slice in one long burst or many small ones does not matter. We thus rewrite Rules 4a and 4b to the following single rule:
+
+- **Rule 4**: Once a job uses up its time allotment at a given level (regardless of how many times it has given up the CPU), its priority is reduced (i.e, it moves down one queue).
+
+![Figure 8.6: Without (Left) and With (Right) Gaming Tolerance](./fig/ch8/8-6.png)
+
+Figure 8.6 shows an example what happens when a workload tries to game the scheduler with the old Rules 4a and 4b (on the left) as well the new anti-gaming Rule 4. Without any protection from gaming, a process can issue an I/O just before a time slice ends and thus dominate CPU time. With such protections in place, regardless of the I/O behavior of the process, it slowly moves down the queues, and thus cannot gain an unfair share of the CPU.
+
+### 8.5 Tuning MLFQ And Other Issues
+
+One big question is how to **parameterize** such a scheduler. For example, how many queues should there be? How big should the time slice be per queue? How often should priority be boosted in order to avoid starvation and account for changes in behavior? There are no easy answers to these questions, and thus only some experience with workloads and subsequent tuning of the scheduler will lead to a satisfactory balance.
+
+![Figure 8.7: Lower Priority, Longer Quanta](./fig/ch8/8-7.png)
+
+For example, most MLFQ variants allow for varying time-slice length across different queues. The high-priority queues are usually given short time slices, they are comprised of interactive jobs, after all, and thus quickly alternating between them makes sense. The low-priority queues, in contrast, contain long-running jobs that are CPU-bound; hence, longer time slices work well. As Figure 8.7 shown.
+
+Solaris MLFQ implementation -- Default values for the table are 60 queues, with slowly increasing time-slice lengths from 20 milliseconds (highest priority) to a few hundred milliseconds (lowest), and priorities boosted around every 1 second or so.
+
+FreeBSD scheduler use a formula to calculate the current priority level of a job, basing it on how much CPU the process has used.
+
+Finally,  many schedulers have a few other features that you might encounter. For example, some schedulers reverse the highest priority levels for operating system work. Some systems also provide interfaces to allow users or administrators to provide some hints to help the OS set priorities(e.g. with `nice`, `madvise`).
+
+### 8.6 MLFQ: Summary
+
+Multi-Level Feedback Queue(MLFQ) has multiple levels of queues, and uses feedback to determine the priority of a given job. History is its guide: pay attention to how jobs
+behave over time and treat them accordingly.
+
+The refined set of MLFQ rules, spread throughout the chapter, are reproduced here for your viewing pleasure:
+- Rule 1: If Priority(A) > Priority(B), A runs (B doesn’t).
+- Rule 2: If Priority(A) = Priority(B), A & B run in round-robin fashion using the time slice (quantum length) of the given queue.
+- Rule 3: When a job enters the system, it is placed at the highest priority (the topmost queue).
+- Rule 4: Once a job uses up its time allotment at a given level (regardless of how many times it has given up the CPU), its priority is reduced (i.e., it moves down one queue).
+- Rule 5: After some time period S, move all the jobs in the system to the topmost queue.
+
+MLFQ is interesting for the following reason: instead of demanding a priori knowledge of the nature of a job, it observes the execution of a job and prioritizes it accordingly. 
