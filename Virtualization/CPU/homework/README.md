@@ -13,3 +13,5 @@ If you just want to read the answer, that is a simple version for solutions, ple
 [Chapter 6. Direct Execution (Measurement)](./ch6-measurement.md)
 
 [Chapter 7. CPU Scheduling (Simulation)](./ch7-simulation.md)
+
+[Chapter 8. Scheduling: The Multi-Level Feedback Queue](./ch8-simulation.md)

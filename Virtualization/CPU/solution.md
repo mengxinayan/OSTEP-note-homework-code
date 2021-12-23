@@ -350,3 +350,118 @@ $ python3 scheduler.py -p SJF -l 300,300,300 -c
 Response time will increase too.
 
 Assume quantum length is `t`, so the Nth job response time is `(N-1)*t`, the average response time is `(N-1)*t/2`.
+
+## Chapter 8 (Simulator)
+
+In this chapter simulation homework, we should run [`mlfq.py`](./code/ch8/homework-simulation/mlfq.py) simulator. Before run it, you should read its [README](./code/ch8/homework-simulation/README.md).
+
+[Chapter 8 (simulation) detailed solution](./homework/ch8-simulation.md)
+
+### 8.1
+
+The parameters are as follows:
+
+```console
+$ python3 mlfq.py -n 2 -j 2 -l 0,20,0:20,30,0
+```
+
+Running result is as follows.
+
+```
+Time 0~10: job1(queue 1), then down in queue 2
+Time 10~20: job2(queue 1), then down in queue 2
+Time 20~30: job1(queue 2), finished at 30
+Time 30~50: job2(queue 2), finished at 50
+```
+
+### 8.2
+
+Example 1 (Figure 8.2 Long-running Job Over Time)
+
+```console
+$ python3 mlfq.py -n 3 -j 1 -l 0,200,0 -c
+```
+
+Example 2 (Figure 8.3: Along Came An Interactive Job)
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,180,0:100,20,0 -c
+```
+
+Example 3 (Figure 8.4: A Mixed I/O-intensive and CPU-intensive Workload)
+
+Use `-i` flag to set IOTIME.
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,175,0:50,25,1 -i 4 -c
+```
+
+Example 4 (Figure 8.5(Left): Without Priority Boost)
+
+Use `-i` flag to set IOTIME without `-B` flag.
+
+```console
+$ python3 mlfq.py -n 3 -j 3 -l 0,200,0:100,20,2:100,20,2 -i 2 -c
+```
+
+#### Example 4 (Figure 8.5(right): With Priority Boost)
+
+Using `-B` flag to set how often to boost the priority of all jobs. The parameters are as follows.
+
+```console
+$ python3 mlfq.py -n 3 -j 3 -l 0,200,0:100,20,2:100,20,2 -i 2 -B 110 -c
+```
+
+Example 5 (Figure 8.6(Left): Without Gaming Tolerance)
+
+Using `-S` flag to reset and stay at same priority level when issuing I/O. The parameters are as follows.
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,200,0:50,45,9 -i 0 -S -c
+```
+
+Example 5 (Figure 8.6(Right): With Gaming Tolerance)
+
+Without `-S` flag. The parameters are as follows.
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,200,0:50,45,9 -i 0 -c
+```
+
+Example 6 (Figure 8.7: Lower Priority, Longer Quanta)
+
+Using `-Q a,b,c` to specify length of time slice per queue level. The parameters are as follows.
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,150,0:10,150,0 -Q 10,20,30 -c
+```
+
+### 8.3
+
+There is only one queue (by `-n 1`), and setting time slice <= (max job length) / (the number of jobs).
+
+```console
+$ python3 mlfq.py -n 1 -j 3 -l 0,50,0:0,50,0:0,50,0 -Q 1 -c 
+```
+
+### 8.4
+
+This question just like Figure 8.6 (Right) without gaming tolerance. So its solution is the same as example 5 in 8.2.
+
+```console
+$ python3 mlfq.py -n 3 -j 2 -l 0,200,0:50,45,9 -i 0 -S -c
+```
+
+### 8.5
+
+200ms. Because the problem requires a job to occupy at least 5% of the CPU, and the highest queue time slice is 10ms, so at least every 10 / 5% = 200ms to boost job back to the highest priority.
+
+### 8.6
+
+Use `-I` flag will pause current running job, start such job that just finished I/O.
+
+Here is an example without `-I`
+
+```console
+$ python3 mlfq.py -n 2 -j 2 -l 0,100,0:0,50,5 -i 2 -c
+```
