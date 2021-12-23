@@ -1,6 +1,8 @@
-# ch6 Direct Execution Homework and Solution
+# ch6 Direct Execution Homework and Solution (Measurement)
 
 If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
+
+Back to [contents](./README) for other chapter solution.
 
 ## Homework (Measurement)
 

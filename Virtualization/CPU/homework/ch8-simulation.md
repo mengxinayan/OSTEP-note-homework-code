@@ -1,6 +1,8 @@
-# ch8 Scheduling: Multi-level Feedback Queue Homework and Solution
+# ch8 Scheduling: Multi-level Feedback Queue Homework and Solution (Simulation)
 
 If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
+
+Back to [contents](./README) for other chapter solution.
 
 ## Homework (Simulation)
 
