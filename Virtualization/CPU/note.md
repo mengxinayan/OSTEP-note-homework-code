@@ -459,6 +459,8 @@ while (current) {
 
 To make this process most efficient, it might generally be best to organize the list in sorted order, from the highest number of tickets to the lowest. The ordering does not affect the correctness of the algorithm; however, it does ensure in general that the fewest number of list iterations are taken, especially if there are a few processes that possess most of the tickets.
 
+[The sample code for lottery scheduling](./code/ch9/sample/lottery.c)
+
 ### 9.4 An Example
 
 Assuming there are two jobs competing against one another, each with the same number of tickets(100) and the same run time(R, which we will vary).
