@@ -2,7 +2,7 @@
 
 If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
 
-Back to [contents](./README) for other chapter solution.
+Back to [contents](./README.md) for other chapter solution.
 
 ## Homework (Measurement)
 

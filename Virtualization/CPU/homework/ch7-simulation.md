@@ -2,7 +2,7 @@
 
 If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
 
-Back to [contents](./README) for other chapter solution.
+Back to [contents](./README.md) for other chapter solution.
 
 ## Homework (Simulation)
 This program, [`scheduler.py`](../code/ch7/homework-simulation/scheduler.py), allows you to see how different schedulers perform under scheduling metrics such as response time, turnaround time, and total wait time. See the [README](../code/ch7/homework-simulation/README.md) for details.

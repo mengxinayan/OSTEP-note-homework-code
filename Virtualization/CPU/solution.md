@@ -465,3 +465,9 @@ Here is an example without `-I`
 ```console
 $ python3 mlfq.py -n 2 -j 2 -l 0,100,0:0,50,5 -i 2 -c
 ```
+
+## Chapter 9 (Simulator)
+
+In this chapter simulation homework, we should run [`lottery.py`](./code/ch9/homework-simulation/lottery.py) simulator. Before run it, you should read its [README](./code/ch9/homework-simulation/README.md).
+
+[Chapter 9 (simulation) detailed solution](./homework/ch9-simulation.md)
