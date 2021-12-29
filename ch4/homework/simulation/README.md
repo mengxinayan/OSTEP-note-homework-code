@@ -1,18 +1,14 @@
-# ch4 Processes Homework and Solution (Simulation)
-
-If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
-
-Back to [contents](./README.md) for other chapter solution.
+# Chapter 4. Processes Homework and Solution (Simulation)
 
 ## Homework (Simulation)
 
-This program, [`process-run.py`](../code/ch4/homework-simulation/process-run.py), allows you to see how process states change as programs run and either use the CPU (e.g., perform an add instruction) or do I/O (e.g., send a request to a disk and wait for it to complete). See the [README](../code/ch4/homework-simulation/README.md) for details.
+This program, [`process-run.py`](./code/process-run.py), allows you to see how process states change as programs run and either use the CPU (e.g., perform an add instruction) or do I/O (e.g., send a request to a disk and wait for it to complete). See the [README](./code/README.md) for details.
 
 ## Questions and Solutions
 
 ### 4.1
 
-1. Run `process-run.py` with the following flags: `-l 5:100,5:100`. What should the CPU utilization be (e.g., the percent of time the CPU is in use?) Why do you know this? Use the `-c` and `-p` flags to
+> 1. Run `process-run.py` with the following flags: `-l 5:100,5:100`. What should the CPU utilization be (e.g., the percent of time the CPU is in use?) Why do you know this? Use the `-c` and `-p` flags to
 see if you were right.
 
 Process 0: 50%; Process 1: 50%; Total : 100%
@@ -38,7 +34,7 @@ Stats: IO Busy  0 (0.00%)
 
 ### 4.2
 
-2. Now run with these flags: `./process-run.py -l 4:100,1:0`. These flags specify one process with 4 instructions (all to use the CPU), and one that simply issues an I/O and waits for it to be done.How long does it take to complete both processes? Use `-c` and `-p` to find out if you were right.
+> 2. Now run with these flags: `./process-run.py -l 4:100,1:0`. These flags specify one process with 4 instructions (all to use the CPU), and one that simply issues an I/O and waits for it to be done.How long does it take to complete both processes? Use `-c` and `-p` to find out if you were right.
 
 Time is 11 = 4(RUN:cpu) + 1(RUN:io) + 5(WAITING) + 1(RUN:io_done). When process 0 finishes, then process 1 will start. And IO takes 5 tricks(default).
 
@@ -64,7 +60,7 @@ Stats: IO Busy  5 (45.45%)
 
 ### 4.3
 
-3. Switch the order of the processes: `-l 1:0,4:100`. What happens now? Does switching the order matter? Why? (As always, use `-c` and `-p` to see if you were right)
+> 3. Switch the order of the processes: `-l 1:0,4:100`. What happens now? Does switching the order matter? Why? (As always, use `-c` and `-p` to see if you were right)
 
 Time is 7 = 1(RUN:io) + 5(WAITING && RUN:cpu) + 1(RUN:io_done). Because process 1 will use CPU when process 0 waiting I/O.
 
@@ -86,7 +82,7 @@ Stats: IO Busy  5 (71.43%)
 
 ### 4.4
 
-4. We’ll now explore some of the other flags. One important flag is `-S`, which determines how the system reacts when a process issues an I/O. With the flag set to SWITCH ON END, the system will NOT switch to another process while one is doing I/O, instead waiting until the process is completely finished. What happens when you run the following two processes (`-l 1:0,4:100 -c -S SWITCH_ON_END`), one doing I/O and the other doing CPU work?
+> 4. We’ll now explore some of the other flags. One important flag is `-S`, which determines how the system reacts when a process issues an I/O. With the flag set to SWITCH ON END, the system will NOT switch to another process while one is doing I/O, instead waiting until the process is completely finished. What happens when you run the following two processes (`-l 1:0,4:100 -c -S SWITCH_ON_END`), one doing I/O and the other doing CPU work?
 
 Time will be 11 = 1(RUN:io) + 5(WAITING) + 1(RUN:io_done) + 4(RUN:cpu). Because the system will NOT switch to another process while one is doing I/O, it will start process 1 when process 0 ends.
 
@@ -112,7 +108,7 @@ Stats: IO Busy  5 (45.45%)
 
 ### 4.5
 
-5. Now, run the same processes, but with the switching behavior set to switch to another process whenever one is WAITING for I/O (`-l 1:0,4:100 -c -S SWITCH_ON_IO`). What happens now? Use `-c` and `-p` to confirm that you are right.
+> 5. Now, run the same processes, but with the switching behavior set to switch to another process whenever one is WAITING for I/O (`-l 1:0,4:100 -c -S SWITCH_ON_IO`). What happens now? Use `-c` and `-p` to confirm that you are right.
 
 Time is 7 = 1(RUN:io) + 5(WAITING && RUN:cpu) + 1(RUN:io_done). Because the system will switch another process while one is doing I/O, so process 1 will run during process doing I/O.
 
@@ -134,7 +130,7 @@ Stats: IO Busy  5 (71.43%)
 
 ### 4.6
 
-6. One other important behavior is what to do when an I/O completes. With `-I IO_RUN_LATER`, when an I/O completes, the process that issued it is not necessarily run right away; rather, whatever was running at the time keeps running. What happens when you run this combination of processes? (Run `./process-run.py -l 3:0,5:100,5:100,5:100 -S SWITCH_ON_IO -I IO_RUN_LATER -c -p`) Are system resources being effectively utilized?
+> 6. One other important behavior is what to do when an I/O completes. With `-I IO_RUN_LATER`, when an I/O completes, the process that issued it is not necessarily run right away; rather, whatever was running at the time keeps running. What happens when you run this combination of processes? (Run `./process-run.py -l 3:0,5:100,5:100,5:100 -S SWITCH_ON_IO -I IO_RUN_LATER -c -p`) Are system resources being effectively utilized?
 
 Time is 31. When process 0 I/O done, the system will not start next I/O immediately. No, Because process 0 need wait to start next I/O.
 
@@ -180,7 +176,7 @@ Stats: IO Busy  15 (48.39%)
 
 ### 4.7
 
-7. Now run the same processes, but with `-I IO_RUN_IMMEDIATE` set, which immediately runs the process that issued the I/O. How does this behavior differ? Why might running a process that just completed an I/O again be a good idea?
+> 7. Now run the same processes, but with `-I IO_RUN_IMMEDIATE` set, which immediately runs the process that issued the I/O. How does this behavior differ? Why might running a process that just completed an I/O again be a good idea?
 
 Time is 21. Time will be less compared with `IO_RUN_LATER`. This will improve time utilization. Because one process can start I/O immediately, while run another process can run instructions.
 
@@ -216,7 +212,7 @@ Stats: IO Busy  15 (71.43%)
 
 ### 4.8
 
-8. Now run with some randomly generated processes: `-s 1 -l 3:50,3:50` or `-s 2 -l 3:50,3:50` or `-s 3 -l 3:50,3:50`. See if you can predict how the trace will turn out. What happens when you use the flag `-I IO_RUN_IMMEDIATE` vs. `-I IO_RUN_LATER`? What happens when you use `-S SWITCH_ON_IO` vs. `-S SWITCH_ON_END`?
+> 8. Now run with some randomly generated processes: `-s 1 -l 3:50,3:50` or `-s 2 -l 3:50,3:50` or `-s 3 -l 3:50,3:50`. See if you can predict how the trace will turn out. What happens when you use the flag `-I IO_RUN_IMMEDIATE` vs. `-I IO_RUN_LATER`? What happens when you use `-S SWITCH_ON_IO` vs. `-S SWITCH_ON_END`?
 
 `IO_RUN_IMMEDIATE`: take less time
 `IO_RUN_LATER`: take more time
@@ -263,7 +259,7 @@ Stats: IO Busy  11 (61.11%)
 Run with `-I IO_RUN_IMMEDIATE` and `-S SWITCH_ON_IO`.
 
 ```console
-╰─$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_IMMEDIATE -S SWITCH_ON_IO -c -p
+$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_IMMEDIATE -S SWITCH_ON_IO -c -p
 Time        PID: 0        PID: 1           CPU           IOs
   1        RUN:cpu         READY             1          
   2         RUN:io         READY             1          
@@ -291,7 +287,7 @@ Stats: IO Busy  11 (64.71%)
 Run with `-I IO_RUN_IMMEDIATE` and `-S SWITCH_ON_END`.
 
 ```console
-╰─$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_IMMEDIATE -S SWITCH_ON_END -c -p
+$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_IMMEDIATE -S SWITCH_ON_END -c -p
 Time        PID: 0        PID: 1           CPU           IOs
   1        RUN:cpu         READY             1          
   2         RUN:io         READY             1          
@@ -326,7 +322,7 @@ Stats: IO Busy  15 (62.50%)
 Run with `-I IO_RUN_LATER` and `-S SWITCH_ON_IO`.
 
 ```console
-╰─$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_LATER -S SWITCH_ON_IO -c -p     
+$ python3 process-run.py -s 3 -l 3:50,3:50 -I IO_RUN_LATER -S SWITCH_ON_IO -c -p     
 Time        PID: 0        PID: 1           CPU           IOs
   1        RUN:cpu         READY             1          
   2         RUN:io         READY             1          
