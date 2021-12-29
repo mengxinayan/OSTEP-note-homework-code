@@ -15,7 +15,7 @@
 
 | Chapter | Learning Note | Homework Solution |
 | :-- | :-- | :-- |
-| 3. Dialogue | NULL | NULL |
+| [3. Dialogue](./ch3/README.md) | NULL | NULL |
 | [4. Processes](./ch4/README.md) | [ch 4. note](./ch4/note/README.md) | [hw4. simulation solution](./ch4/homework/simulation/README.md) |
 | [5. Process API](./ch5/README.md) | [ch 5. note](./ch5/note/README.md) | [hw5. simulation solution](./ch5/homework/simulation/README.md) <br> [hw5 code solution](./ch5/homework/code/README.md) |
 | [6. Direct Execution](./ch6/README.md) | [ch 6. note](./ch6/note/README.md) | [hw6. measurement solution](./ch6/homework/measurement/README.md) |
