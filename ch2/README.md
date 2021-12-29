@@ -1,4 +1,4 @@
-## Chapter 2. Introduction (in Intro)
+## Chapter 2. Introduction to Operating System (in Intro)
 
 [Learning Note](./note/README.md)
 

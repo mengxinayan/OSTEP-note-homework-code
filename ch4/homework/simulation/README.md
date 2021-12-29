@@ -1,4 +1,4 @@
-# Chapter 4. Processes Homework and Solution (Simulation)
+# Chapter 4. The Abstraction: The Process Homework and Solution (Simulation)
 
 ## Homework (Simulation)
 

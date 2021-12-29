@@ -1,4 +1,4 @@
-## Chapter 4. Processes
+## Chapter 4. The Abstraction: The Process (Note)
 
 The definition of a process, informally, is quite simple: it is a running program.
 
