@@ -22,7 +22,7 @@
 | 7. CPU Scheduling | NULL | NULL |
 | 8. Multi-level Feedback | NULL | NULL |
 | 9. Lottery Scheduling | NULL | NULL |
-| 10. Multi-CPU Scheduling | **TODO** after *Concurrency* | **TODO** after *Concurrency* |
+| 10. Multi-CPU Scheduling | **TODO** after *Concurrency* part | **TODO** after *Concurrency* part |
 | 11. Summary | NULL | NULL |
 
 ## -----           **TODO**           -----
