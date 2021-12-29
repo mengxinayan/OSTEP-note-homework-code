@@ -1,8 +1,4 @@
-# ch5 Process API Homework and Solution (Code)
-
-If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
-
-Back to [contents](./README.md) for other chapter solution.
+# Chapter 5. Process API Homework and Solution (Code)
 
 ## Homework (code)
 
@@ -12,9 +8,11 @@ In this homework, you are to gain some familiarity with the process management A
 
 ### 5.1
 
-1. Write a program that calls `fork()`. Before calling `fork()`, have the main process access a variable (e.g., x) and set its value to something (e.g., 100). What value is the variable in the child process? What happens to the variable when both the child and parent change the value of x?
+> 1. Write a program that calls `fork()`. Before calling `fork()`, have the main process access a variable (e.g., x) and set its value to something (e.g., 100). What value is the variable in the child process? What happens to the variable when both the child and parent change the value of x?
 
-`x = 100` in child process. Because child and parent process have their own `x` variable, child process changes to `x` value **do not** affect the value of `x` in the parent process.
+`x = 100` in child process. Because child and parent process have their own `x` variable, child process changes to `x` value **do not** affect the value of `x` in the parent process. 
+
+([code](./code/hw1.c))
 
 ```c
 #include <stdio.h>
@@ -46,9 +44,11 @@ int main(int argc, char *argv[])
 
 ### 5.2
 
-2. Write a program that opens a file (with the `open()` system call) and then calls `fork()` to create a new process. Can both the child and parent access the file descriptor returned by `open()`? What happens when they are writing to the file concurrently, i.e., at the same time?
+> 2. Write a program that opens a file (with the `open()` system call) and then calls `fork()` to create a new process. Can both the child and parent access the file descriptor returned by `open()`? What happens when they are writing to the file concurrently, i.e., at the same time?
 
-Yes, both parent and child process can use this file descriptor. All messages will be written in the file, but the sequence of them are not sure.
+Yes, both parent and child process can use this file descriptor. All messages will be written in the file, but the sequence of them are not sure. 
+
+([code](./code/hw2.c))
 
 ```c
 #include <stdio.h>
@@ -82,9 +82,11 @@ int main(int argc, char *argv[])
 
 ### 5.3
 
-3. Write another program using `fork()`. The child process should print “hello”; the parent process should print “goodbye”. You should try to ensure that the child process always prints first; can you do this *without* calling **`wait()`** in the parent?
+> 3. Write another program using `fork()`. The child process should print “hello”; the parent process should print “goodbye”. You should try to ensure that the child process always prints first; can you do this *without* calling **`wait()`** in the parent?
 
-Use `sleep()` before print 'goodbye' in parent process.
+Use `sleep()` before print 'goodbye' in parent process. 
+
+([code](./code/hw3.c))
 
 ```c
 #include <stdio.h>
@@ -109,7 +111,7 @@ int main(int argc, char *argv[])
 
 ### 5.4
 
-4. Write a program that calls `fork()` and then calls some form of `exec()` to run the program `/bin/ls`. See if you can try all of the variants of `exec()`, including (on Linux) `execl()`, `execle()`, `execlp()`, `execv()`, `execvp()`, and `execvpe()`. Why do you think there are so many variants of the same basic call?
+> 4. Write a program that calls `fork()` and then calls some form of `exec()` to run the program `/bin/ls`. See if you can try all of the variants of `exec()`, including (on Linux) `execl()`, `execle()`, `execlp()`, `execv()`, `execvp()`, and `execvpe()`. Why do you think there are so many variants of the same basic call?
 
 To fit various demand. The differences between `exec()` family system call are as follow.
 
@@ -117,7 +119,9 @@ To fit various demand. The differences between `exec()` family system call are a
 
 For suffix `p`, such as `execvp()`, `execlp()`. `p` means it will the `PATH` environment variable to find the program. For example, if you want to use `ls` command, with suffix `p`, use `ls` directly can work well, however, you should use `/bin/ls` rather than `ls` without the suffix `p`.
 
-For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the environment for the process.
+For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the environment for the process. 
+
+([code](./code/hw4.c))
 
 ```c
 #include <stdio.h>
@@ -158,9 +162,11 @@ int main(int argc, char *argv[])
 
 ### 5.5
 
-5. Now write a program that uses `wait()` to wait for the child process to finish in the parent. What does `wait()` return? What happens if you use `wait()` in the child?
+> 5. Now write a program that uses `wait()` to wait for the child process to finish in the parent. What does `wait()` return? What happens if you use `wait()` in the child?
 
 `wait()` returns child process identifier(PID). If child process call `wait()`, it will return `-1`. 
+
+([code](./code/hw5.c))
 
 ```c
 #include <stdio.h>
@@ -187,9 +193,11 @@ int main(int argc, char *argv[])
 
 ### 5.6
 
-6. Write a slight modification of the previous program, this time using `waitpid()` instead of `wait()`. When would `waitpid()` be useful?
+> 6. Write a slight modification of the previous program, this time using `waitpid()` instead of `wait()`. When would `waitpid()` be useful?
 
 The `wait()` system call suspends execution of the calling thread until one of its children terminates. The call `wait(&wstatus)` is equivalent to: `waitpid(-1, &wstatus, 0)`. The `waitpid()` system call suspends execution of the calling thread until a child specified by  pid  argument  has  changed state.  By default, `waitpid()` waits only for terminated children, but this behavior is modifiable via the options argument, as described below.
+
+([code](./code/hw6.c))
 
 ```c
 #include <stdio.h>
@@ -215,11 +223,11 @@ int main(int argc, char *argv[])
 
 ### 5.7
 
-7. Write a program that creates a child process, and then in the child
-closes standard output (`STDOUT_FILENO`). What happens if the child
-calls `printf()` to print some output after closing the descriptor?
+> 7. Write a program that creates a child process, and then in the child closes standard output (`STDOUT_FILENO`). What happens if the child calls `printf()` to print some output after closing the descriptor?
 
 After closing stdout file descriptor, it can't print any message by calling `printf()`.
+
+([code](./code/hw7.c))
 
 ```c
 #include <stdio.h>
@@ -250,7 +258,9 @@ int main(int argc, char *argv[])
 
 ### 5.8
 
-8. Write a program that creates two children, and connects the standard output of one to the standard input of the other, using the `pipe()` system call.
+> 8. Write a program that creates two children, and connects the standard output of one to the standard input of the other, using the `pipe()` system call.
+
+([code](./code/hw8.c))
 
 ```c
 #include <stdio.h>
