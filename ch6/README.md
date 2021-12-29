@@ -1,4 +1,4 @@
-## Chapter 6. Mechanism: Limited Direct Execution
+## Chapter 6. Mechanism: Limited Direct Execution (in Virtualization I. CPU)
 
 [Learning Note](./note/README.md)
 
