@@ -1,18 +1,14 @@
-# ch8 Scheduling: Multi-level Feedback Queue Homework and Solution (Simulation)
-
-If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
-
-Back to [contents](./README.md) for other chapter solution.
+# Chapter 8. Scheduling: The Multi-Level Feedback Queue Homework and Solution (Simulation)
 
 ## Homework (Simulation)
 
-This program, [`mlfq.py`](../code/ch8/homework-simulation/mlfq.py), allows you to see how the MLFQ scheduler presented in this chapter behaves. See the [README](../code/ch8/homework-simulation/README.md) for details.
+This program, [`mlfq.py`](./code/mlfq.py), allows you to see how the MLFQ scheduler presented in this chapter behaves. See the [README](./code/README.md) for details.
 
 ## Questions and Solutions
 
 ### 8.1
 
-1. Run a few randomly-generated problems with just two jobs and two queues; compute the MLFQ execution trace for each. Make your life easier by limiting the length of each job and turning off I/Os.
+> 1. Run a few randomly-generated problems with just two jobs and two queues; compute the MLFQ execution trace for each. Make your life easier by limiting the length of each job and turning off I/Os.
 
 The program parameters are as follows:
 
@@ -145,11 +141,11 @@ Final statistics:
 
 ### 8.2
 
-2. How would you run the scheduler to reproduce each of the examples in the chapter?
+> 2. How would you run the scheduler to reproduce each of the examples in the chapter?
 
 #### Example 1 (Figure 8.2 Long-running Job Over Time)
 
-![Figure 8.2 Long-running Job Over Time](../fig/ch8/8-2.png)
+![Figure 8.2 Long-running Job Over Time](./fig/8-2.png)
 
 The program parameters are as follows.
 
@@ -211,7 +207,7 @@ Final statistics:
 
 #### Example 2 (Figure 8.3: Along Came An Interactive Job)
 
-![Figure 8.3: Along Came An Interactive Job](../fig/ch8/8-3.png)
+![Figure 8.3: Along Came An Interactive Job](./fig/8-3.png)
 
 The program parameters are as follows.
 
@@ -283,7 +279,7 @@ Final statistics:
 
 #### Example 3 (Figure 8.4: A Mixed I/O-intensive and CPU-intensive Workload)
 
-![Figure 8.4: A Mixed I/O-intensive and CPU-intensive Workload](../fig/ch8/8-4.png)
+![Figure 8.4: A Mixed I/O-intensive and CPU-intensive Workload](./fig/8-4.png)
 
 Use `-i` flag to set IOTIME. The program parameters are as follows.
 
@@ -364,7 +360,7 @@ Final statistics:
 
 #### Example 4 (Figure 8.5(Left): Without Priority Boost)
 
-![Figure 8.5(Left): Without Priority Boost](../fig/ch8/8-5.png)
+![Figure 8.5(Left): Without Priority Boost](./fig/8-5.png)
 
 Use `-i` flag to set IOTIME without `-B` flag. The program parameters are as follows.
 
@@ -483,7 +479,7 @@ Final statistics:
 
 #### Example 4 (Figure 8.5(right): With Priority Boost)
 
-![Figure 8.5(right): With Priority Boost](../fig/ch8/8-5.png)
+![Figure 8.5(right): With Priority Boost](./fig/8-5.png)
 
 Using `-B` flag to set how often to boost the priority of all jobs. The program parameters are as follows.
 
@@ -576,7 +572,7 @@ Final statistics:
 
 #### Example 5 (Figure 8.6(Left): Without Gaming Tolerance)
 
-![Figure 8.6(Left): Without Gaming Tolerance](../fig/ch8/8-6.png)
+![Figure 8.6(Left): Without Gaming Tolerance](./fig/8-6.png)
 
 Using `-S` flag to reset and stay at same priority level when issuing I/O. The program parameters are as follows.
 
@@ -664,7 +660,7 @@ Final statistics:
 
 #### Example 5 (Figure 8.6(Right): With Gaming Tolerance)
 
-![Figure 8.6(Right): With Gaming Tolerance](../fig/ch8/8-6.png)
+![Figure 8.6(Right): With Gaming Tolerance](./fig/8-6.png)
 
 Without `-S` flag. The program parameters are as follows.
 
@@ -768,7 +764,7 @@ Final statistics:
 
 #### Example 6 (Figure 8.7: Lower Priority, Longer Quanta)
 
-![](../fig/ch8/8-4.png)
+![Figure 8.7: Lower Priority, Longer Quanta](./fig/8-7.png)
 
 Using `-Q a,b,c` to specify length of time slice per queue level. The program parameters are as follows.
 
@@ -854,6 +850,8 @@ Final statistics:
 
 ### 8.3
 
+> 3. How would you configure the scheduler parameters to behave just like a round-robin scheduler?
+
 There is only one queue (by `-n 1`), and setting time slice <= (max job length) / (the number of jobs).
 
 The program parameters are as follows.
@@ -908,6 +906,8 @@ Execution Trace:
 ```
 
 ### 8.4
+
+> 4. Craft a workload with two jobs and scheduler parameters so that one job takes advantage of the older Rules 4a and 4b (turned on with the `-S` flag) to game the scheduler and obtain 99% of the CPU over a particular time interval.
 
 This question just like Figure 8.6 (Right) without gaming tolerance. So its solution is the same as example 5 in 8.2. The program parameters are as follows.
 
@@ -995,9 +995,13 @@ Final statistics:
 
 ### 8.5
 
+> 5. Given a system with a quantum length of 10 ms in its highest queue, how often would you have to boost jobs back to the highest priority level (with the `-B` flag) in order to guarantee that a single long-running (and potentially-starving) job gets at least 5% of the CPU?
+
 200ms. Because the problem requires a job to occupy at least 5% of the CPU, and the highest queue time slice is 10ms, so at least every 10 / 5% = 200ms to boost job back to the highest priority.
 
 ### 8.6
+
+> 6. One question that arises in scheduling is which end of a queue to add a job that just finished I/O; the `-I` flag changes this behavior for this scheduling simulator. Play around with some workloads and see if you can see the effect of this flag.
 
 Use `-I` flag will pause current running job, start such job that just finished I/O.
 
