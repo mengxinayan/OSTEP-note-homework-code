@@ -1,5 +1,5 @@
 ## Chapter 2. Introduction (in Intro)
 
-My [learning note](./note/note.md)
+[Learning Note](./note/README.md)
 
-Some [sample code](./note/sample_code)
+[Sample Code](./note/sample_code)
