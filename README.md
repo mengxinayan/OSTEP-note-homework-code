@@ -8,7 +8,7 @@
 
 | Chapter | Learning Note | Homework Solution |
 | :-- | :-- | :-- |
-| 1. Dialogue | NULL | NULL |
+| [1. Dialogue](./ch1/README.md) | NULL | NULL |
 | [2. Introduction](./ch2/README.md) | [ch 2. note](./ch2/note/README.md) | NULL |
 
 ### Virtualization I. CPU
