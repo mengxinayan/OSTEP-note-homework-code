@@ -1,17 +1,14 @@
-# ch5 Scheduling: Introduction Homework and Solution (Simulation)
-
-If you just want to read the answers, that is a simple version for solutions, please visit [here](../solution.md).
-
-Back to [contents](./README.md) for other chapter solution.
+# Chapter 7. Scheduling: Introduction Homework and Solution (Simulation)
 
 ## Homework (Simulation)
-This program, [`scheduler.py`](../code/ch7/homework-simulation/scheduler.py), allows you to see how different schedulers perform under scheduling metrics such as response time, turnaround time, and total wait time. See the [README](../code/ch7/homework-simulation/README.md) for details.
+
+This program, [`scheduler.py`](./code/scheduler.py), allows you to see how different schedulers perform under scheduling metrics such as response time, turnaround time, and total wait time. See the [README](./code/README.md) for details.
 
 ## Questions and Solutions
 
 ### 7.1
 
-1. Compute the response time and turnaround time when running three jobs of length 200 with the SJF and FIFO schedulers.
+> 1. Compute the response time and turnaround time when running three jobs of length 200 with the SJF and FIFO schedulers.
 
 For FIFO:
 
@@ -79,7 +76,7 @@ Final statistics:
 
 ### 7.2
 
-2. Now do the same but with jobs of different lengths: 100, 200, and 300.
+> 2. Now do the same but with jobs of different lengths: 100, 200, and 300.
 
 For FIFO:
 
@@ -147,7 +144,7 @@ Final statistics:
 
 ### 7.3
 
-3. Now do the same, but also with the RR scheduler and a time-slice of 1.
+> 3. Now do the same, but also with the RR scheduler and a time-slice of 1.
 
 For RR with time-slice of 1:
 
@@ -191,19 +188,19 @@ Final statistics:
 
 ### 7.4
 
-4. For what types of workloads does SJF deliver the same turnaround times as FIFO?
+> 4. For what types of workloads does SJF deliver the same turnaround times as FIFO?
 
 The length of arrival jobs is from short to long.
 
 ### 7.5
 
-5. For what types of workloads and quantum lengths does SJF deliver the same response times as RR?
+> 5. For what types of workloads and quantum lengths does SJF deliver the same response times as RR?
 
 Each job of length is same and quantum length is equals to this length.
 
 ### 7.6
 
-6. What happens to response time with SJF as job lengths increase? Can you use the simulator to demonstrate the trend?
+> 6. What happens to response time with SJF as job lengths increase? Can you use the simulator to demonstrate the trend?
 
 Response time will increase too.
 
@@ -286,7 +283,7 @@ Final statistics:
 
 ### 7.7
 
-7. What happens to response time with RR as quantum lengths increase? Can you write an equation that gives the worst-case response time, given N jobs?
+> 7. What happens to response time with RR as quantum lengths increase? Can you write an equation that gives the worst-case response time, given N jobs?
 
 Response time will increase too.
 
