@@ -5,7 +5,7 @@ import math
 
 def run_once(quantum):
     joblist = [[0, 100, 100], [1, 100, 100]]
-    run_total = 200
+    run_total = math.ceil(200/quantum) * quantum
     ticket_total = 200
     clock = 0
     for i in range(run_total):
@@ -29,12 +29,11 @@ def run_once(quantum):
         
         joblist[wjob] = (wjob, wrun, wtix)
 
-    total_runtime = math.ceil(run_total/quantum) * quantum
-    return clock / total_runtime
+    return clock / run_total
 
-def run_quantum_range(min_quantum, max_quantum):
+def run_quantum_range(quantum_arr):
     fairness_arr = []
-    for quantum in range(min_quantum, max_quantum+1):
+    for quantum in quantum_arr:
         fairness_arr.append(run_once(quantum))
     return fairness_arr
 
@@ -45,7 +44,7 @@ fairness_total_arr = []
 max_random_times = 5000
 
 for i in range(max_random_times):
-    fairness_total_arr.append(run_quantum_range(min_quantum, max_quantum))
+    fairness_total_arr.append(run_quantum_range(quantum_arr))
 
 avg_fairness_arr = np.average(fairness_total_arr, axis=0)
 
@@ -56,7 +55,3 @@ plt.ylabel('Fairness (Average)')
 plt.title('Fairness with Quantum')
 plt.savefig('9-4-quantum.png')
 plt.show()
-
-# plt.plot(quantum_arr, run_once(1))
-# plt.plot([1,2,3], [4,5,6])
-# plt.show()

@@ -31,9 +31,9 @@ def run_once(length):
         
     return clock / run_total
 
-def run_length_range(min_length, max_length):
+def run_length_range(length_arr):
     fairness_arr = []
-    for length in range(min_length, max_length+1, 10):
+    for length in length_arr:
         fairness_arr.append(run_once(length))
     return fairness_arr
 
@@ -44,7 +44,7 @@ fairness_total_arr = []
 max_random_times = 100
 
 for i in range(max_random_times):
-    fairness_total_arr.append(run_length_range(min_length, max_length))
+    fairness_total_arr.append(run_length_range(length_arr))
 
 avg_fairness_arr = np.average(fairness_total_arr, axis=0)
 
