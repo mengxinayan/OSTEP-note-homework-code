@@ -6,21 +6,28 @@
 
 ### Intro
 
-[Learning note](Intro/note.md)
+| Chapter | Learning Note | Homework Solution |
+| :-- | :-- | :-- |
+| 1. Dialogue | NULL | NULL |
+| 2. Introduction | NULL | NULL |
 
-[Sample code](Intro/sample_code)
+### Virtualization I. CPU
 
-### Virtualization
+| Chapter | Learning Note | Homework Solution |
+| :-- | :-- | :-- |
+| 3. Dialogue | NULL | NULL |
+| 4. Processes | NULL | NULL |
+| 5. Process API | NULL | NULL |
+| 6. Direct Execution | NULL | NULL |
+| 7. CPU Scheduling | NULL | NULL |
+| 8. Multi-level Feedback | NULL | NULL |
+| 9. Lottery Scheduling | NULL | NULL |
+| 10. Multi-CPU Scheduling | **TODO** after *Concurrency* | **TODO** after *Concurrency* |
+| 11. Summary | NULL | NULL |
 
-#### Part I. Virtualizing the CPU
+## -----           **TODO**           -----
 
-[Learning note](Virtualization/CPU/note.md)
-
-[Solution (only answers)](Virtualization/CPU/solution.md)
-
-[More detailed solution(including questions, answers, code and its result)](Virtualization/CPU/homework/README.md)
-
-#### Part II. Virtualizing the memory
+### Virtualization II. Memory
 
 ### Concurrency
 
