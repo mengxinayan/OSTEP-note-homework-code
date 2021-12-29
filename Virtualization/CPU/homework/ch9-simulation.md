@@ -6,9 +6,13 @@ Back to [contents](./README.md) for other chapter solution.
 
 ## Homework (Simulation)
 
+This program, [`lottery.py`](../code/ch9/homework-simulation/lottery.py), allows you to see how a lottery scheduler works. See the [README](../code/ch9/homework-simulation/README.md) for details.
+
 ## Questions and Solutions
 
 ### 9.1
+
+1. Compute the solutions for simulations with 3 jobs and random seeds of 1, 2, and 3.
 
 For seed is equals 1, the results are as follows. 
 
@@ -136,11 +140,15 @@ $ python3 lottery.py -s 3 -j 3 -c
 
 ### 9.2
 
+2. Now run with two specific jobs: each of length 10, but one (job 0) with just 1 ticket and the other (job 1) with 100 (e.g., -l 10:1,10:100). What happens when the number of tickets is so imbalanced? Will job 0 ever run before job 1 completes? How often? In general, what does such a ticket imbalance do to the behavior of lottery scheduling?
+
 Job 1 will run more frequently.
 
 It is possible that Job 0 will be completed before Job 1, the probability is about 9.5%. Because if you want job 1 to complete before job 0 is run, job 1 needs to be run for the first 10 times, and its probability is (100/101)^10. Therefore, the probability of job 1 running before job 0 is completed is 1-(100/101)^10 is approximately equal to 9.5%.
 
 ### 9.3
+
+3. When running with two jobs of length 100 and equal ticket allocations of 100 (-l 100:100,100:100), how unfair is the scheduler? Run with some different random seeds to determine the (probabilistic) answer; let unfairness be determined by how much earlier one job finishes than the other.
 
 You should run `python3 lottery.py -s 1 -l 100:100,100:100 -c`
 
@@ -152,6 +160,24 @@ When the random seed is equal to 5, F = 181/200 = 0.905
 
 ### 9.4
 
+4. How does your answer to the previous question change as the quantum size (-q) gets larger?
 
+Generally, fairness will gradually decrease with the increase of quantum, but with the increase of quantum. The change of fairness in a certain quantum range will be more stable, because the total number of time slices required within a certain quantum range is the same. For example, when the quantum range is 50 to 65, two jobs can be completed by four runs.
+
+The graph of fairness changes with quantum is as follows ([code](../code/ch9/homework-simulation/9-4-quantum.py)):
+
+![Figure 9.4 Fairness with Quantum](../fig/ch9/9-4-quantum.png)
 
 ### 9.5
+
+5. Can you make a version of the graph that is found in the chapter?
+What else would be worth exploring? How would the graph look
+with a stride scheduler?
+
+For job length, the graph of fairness changes with job length is as follows ([code](../code/ch9/homework-simulation/9-5-length.py)):
+
+![Figure 9.5 Fairness with Job Length](../fig/ch9/9-5-length.png)
+
+For stride scheduler, the graph of fairness changes with th ratio of job 1 tickets in total tickets is as follows ([code](../code/ch9/homework-simulation/9-5-stride.py)):
+
+![Figure 9.5 Fairness with Job Length](../fig/ch9/9-5-stride.png)
