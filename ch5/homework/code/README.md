@@ -12,7 +12,7 @@ In this homework, you are to gain some familiarity with the process management A
 
 `x = 100` in child process. Because child and parent process have their own `x` variable, child process changes to `x` value **do not** affect the value of `x` in the parent process. 
 
-([code](./code/hw1.c))
+Here is [code](./code/hw1.c)
 
 ```c
 #include <stdio.h>
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
 Yes, both parent and child process can use this file descriptor. All messages will be written in the file, but the sequence of them are not sure. 
 
-([code](./code/hw2.c))
+Here is [code](./code/hw2.c)
 
 ```c
 #include <stdio.h>
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 
 Use `sleep()` before print 'goodbye' in parent process. 
 
-([code](./code/hw3.c))
+Here is [code](./code/hw3.c)
 
 ```c
 #include <stdio.h>
@@ -121,7 +121,7 @@ For suffix `p`, such as `execvp()`, `execlp()`. `p` means it will the `PATH` env
 
 For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the environment for the process. 
 
-([code](./code/hw4.c))
+Here is [code](./code/hw4.c)
 
 ```c
 #include <stdio.h>
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
 
 `wait()` returns child process identifier(PID). If child process call `wait()`, it will return `-1`. 
 
-([code](./code/hw5.c))
+Here is [code](./code/hw5.c)
 
 ```c
 #include <stdio.h>
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 
 The `wait()` system call suspends execution of the calling thread until one of its children terminates. The call `wait(&wstatus)` is equivalent to: `waitpid(-1, &wstatus, 0)`. The `waitpid()` system call suspends execution of the calling thread until a child specified by  pid  argument  has  changed state.  By default, `waitpid()` waits only for terminated children, but this behavior is modifiable via the options argument, as described below.
 
-([code](./code/hw6.c))
+Here is [code](./code/hw6.c)
 
 ```c
 #include <stdio.h>
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
 
 After closing stdout file descriptor, it can't print any message by calling `printf()`.
 
-([code](./code/hw7.c))
+Here is [code](./code/hw7.c)
 
 ```c
 #include <stdio.h>
@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
 
 > 8. Write a program that creates two children, and connects the standard output of one to the standard input of the other, using the `pipe()` system call.
 
-([code](./code/hw8.c))
+Here is [code](./code/hw8.c)
 
 ```c
 #include <stdio.h>
