@@ -23,7 +23,7 @@
 | [8. Multi-level Feedback](./ch8/README.md) | [ch 8. note](./ch8/note/README.md) | [hw8. simulation solution](./ch8/homework/simulation/README.md) |
 | [9. Lottery Scheduling](./ch9/README.md) | [ch 9. note](./ch9/note/README.md) | [hw9. simulation solution](./ch9/homework/simulation/README.md) |
 | 10. Multi-CPU Scheduling | **TODO** after *Concurrency* part | **TODO** after *Concurrency* part |
-| 11. Summary | NULL | NULL |
+| [11. Summary](./ch11/README.md) | NULL | NULL |
 
 ## -----           **TODO**           -----
 
