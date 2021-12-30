@@ -25,9 +25,25 @@
 | 10. Multi-CPU Scheduling | **TODO** after *Concurrency* part | **TODO** after *Concurrency* part |
 | [11. Summary](./ch11/README.md) | NULL | NULL |
 
-## -----           **TODO**           -----
-
 ### Virtualization II. Memory
+
+| Chapter | Learning Note | Homework Solution |
+| :-- | :-- | :-- |
+| 12. Dialogue | NULL | NULL |
+| 13. Address Space | NULL | NULL |
+| 14. Memory API | NULL | NULL |
+| 15. Address Translation | NULL | NULL |
+| 16. Segmentation | NULL | NULL |
+| 17. Free Space Management | NULL | NULL |
+| 18. Introduction to Paging | NULL | NULL |
+| 19. Translation Lookaside Buffers | NULL | NULL |
+| 20. Advanced Page Tables | NULL | NULL |
+| 21. Swapping: Mechanisms | NULL | NULL |
+| 22. Swapping: Policies | NULL | NULL |
+| 23. Complete VM Systems | NULL | NULL |
+| 24. Summary | NULL | NULL |
+
+## -----           **TODO**           -----
 
 ### Concurrency
 
