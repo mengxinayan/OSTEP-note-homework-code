@@ -29,7 +29,7 @@
 
 | Chapter | Learning Note | Homework Solution |
 | :-- | :-- | :-- |
-| 12. Dialogue | NULL | NULL |
+| [12. Dialogue](./ch12/README.md) | NULL | NULL |
 | 13. Address Space | NULL | NULL |
 | 14. Memory API | NULL | NULL |
 | 15. Address Translation | NULL | NULL |
