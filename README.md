@@ -31,7 +31,7 @@
 | :-- | :-- | :-- |
 | [12. Dialogue](./ch12/README.md) | NULL | NULL |
 | [13. Address Space](./ch13/README.md) | [ch 13. note](./ch13/note/README.md) | [ch13. code solution](./ch13/homework/code/README.md) |
-| 14. Memory API | NULL | NULL |
+| [14. Memory API](./ch14/README.md) | [ch 14. note](./ch14/note/README.md) | NULL |
 | 15. Address Translation | NULL | NULL |
 | 16. Segmentation | NULL | NULL |
 | 17. Free Space Management | NULL | NULL |
