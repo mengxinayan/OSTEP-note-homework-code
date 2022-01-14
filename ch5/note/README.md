@@ -23,6 +23,14 @@ When you want to run a *different* program, `exec()` system call can do that. `e
 
 [Example p3](./sample_code/p3.c) will run the program `wc` on source file `p3.c`.
 
+The differences between `exec()` family system call are as follow.
+
+`execl*()` V.S. `execv*()`: `execl*()` requires a list of arguments while `execv*()` requires a vector of arguments. Specifically, `execl*()` needs `char *arg1, char *arg2, ..., char *argX`, `execv*()` needs `char *argv[]`. Note that for `execv*()`, the array  of  pointers  **must**  be  terminated  by  a  null pointer.
+
+For suffix `p`, such as `execvp()`, `execlp()`. `p` means it will the `PATH` environment variable to find the program. For example, if you want to use `ls` command, with suffix `p`, use `ls` directly can work well, however, you should use `/bin/ls` rather than `ls` without the suffix `p`.
+
+For suffix `e`, such as `execle()`, `execvpe()`. `e` allows you to specify the environment for the process. 
+
 ### 5.4 Why? Motivating the API
 
 The separation of `fork()` and `exec()` is essential in building a UNIX shell, because it lets the shell run code after the call to `fork()` but before the call to `exec()`.
