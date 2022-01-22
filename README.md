@@ -33,7 +33,7 @@
 | [13. Address Space](./ch13/README.md) | [ch 13. note](./ch13/note/README.md) | [ch13. code solution](./ch13/homework/code/README.md) |
 | [14. Memory API](./ch14/README.md) | [ch 14. note](./ch14/note/README.md) | [ch 14. code solution](./ch14/homework/code/README.md) |
 | [15. Address Translation](./ch15/README.md) | [ch 15. note](./ch15/note/README.md) | [ch 15. note](./ch15/homework/simulation/README.md) |
-| 16. Segmentation | NULL | NULL |
+| [16. Segmentation](./ch16/README.md) | [ch 16. note](./ch16/note/README.md) | NULL |
 | 17. Free Space Management | NULL | NULL |
 | 18. Introduction to Paging | NULL | NULL |
 | 19. Translation Lookaside Buffers | NULL | NULL |
